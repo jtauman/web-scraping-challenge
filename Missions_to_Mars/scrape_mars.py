@@ -72,7 +72,7 @@ def scrape():
     facts_df=tables.rename(columns={0:"Parameter", 1:"Mars"})
 
     #convert to html table string
-    mars_table = facts_df.to_html()
+    mars_table = facts_df.to_html(index=False)
     mars_table = mars_table.replace('\n', '')
 
     #print results
