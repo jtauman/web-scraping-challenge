@@ -19,12 +19,17 @@ def home():
     # Return template and data
     return render_template("index.html", mars_dict=mars_dict)
 
+#route to render scrape function to update mongo db with scraped items
 @app.route("/scrape")
 def scraper():
+    #assign dictionary to mongo collection
     mars_dict = mongo.db.mars_dict
+    #call scrape function to get data
     mars_data = scrape_mars.scrape()
+    #update mongo collection
     mars_dict.update({}, mars_data, upsert=True)
 
+    #return to home
     return redirect("/")
 
 
